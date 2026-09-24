@@ -1,5 +1,5 @@
 import { ThemedView } from "@/components/themed-view";
-import { View, Text, Button, Image, StyleSheet, TouchableOpacity } from "react-native";
+import { View, Text, Button, Image, StyleSheet, TouchableOpacity, ScrollView } from "react-native";
 import { useRouter } from 'expo-router';
 import { SafeAreaView } from 'react-native-safe-area-context';
 
@@ -30,11 +30,44 @@ export default function HomePage() {
                     </TouchableOpacity>
                 </View>
                 <View style={styles.gameMode}>
-
+                    <View style={styles.scrollBox}>
+                        <Image source={require('../../public/GameHubImages/Icon.png')} style={styles.modeImages}/>
+                        <Text style={styles.scrollBoxText}>Ranqueada</Text>
+                    </View>
+                    <View style={styles.scrollBox}>
+                        <Image source={require('../../public/GameHubImages/Icon(1).png')} style={styles.modeImages}/>
+                        <Text style={styles.scrollBoxText}>Duelo X1</Text>
+                    </View>
+                    <View style={styles.scrollBox}>
+                        <Image source={require('../../public/GameHubImages/Group.png')} style={styles.modeImages}/>
+                        <Text style={styles.scrollBoxText}>Diversão</Text>
+                    </View>
                 </View>
                 <View style={styles.partidasAgendadas}>
                     <View style={styles.partidasOpcoes}>
-
+                        <View style={styles.titulocanal}>
+                            <Text style={styles.titulo}>Partidas agendadas</Text>
+                            <Text style={styles.counter}>Total 6</Text>
+                        </View>                        
+                        <ScrollView style={styles.partidas}>
+                            <View style={styles.scrollPartidas}>
+                                <Image source={require('../../public/GameHubImages/Rectangle.png')}/>
+                                <View style={styles.scrollPartidaDetalhes}>
+                                    <Text style={[styles.textWhite, styles.textBold]}>Lendários</Text>
+                                    <View style={styles.person}>
+                                        <Image source={require('../../public/GameHubImages/Frame.png')}/>
+                                        <Text style={styles.textWhite}>18/06 às 21:00h</Text>
+                                    </View>                                    
+                                </View>
+                                <View style={styles.scrollPartidaDetalhes}>
+                                    <Text style={[styles.textWhite, styles.textBold]}>Ranqueada</Text>
+                                    <View style={styles.person}>
+                                        <Image source={require('../../public/GameHubImages/Frame(1).png')}/>
+                                        <Text style={styles.textWhite}>Anfitrião</Text>  
+                                    </View>                                    
+                                </View>                                                         
+                            </View>
+                        </ScrollView>
                     </View>
                 </View>
             </SafeAreaView>
@@ -55,17 +88,21 @@ const styles = StyleSheet.create({
         flexDirection: 'row',
     },
     gameMode: {
-        backgroundColor: 'white',
+        flexDirection: 'row',
+        backgroundColor: '#0e1645',
         borderColor: 'black',
-        margin: 1,
+        margin: 10,
+        height: 100,
+        justifyContent: 'space-around',
     },
     partidasAgendadas: {
-        backgroundColor: 'white',
+        backgroundColor: '#0e1645',
         borderColor: 'black',
-        margin: 1,
+        margin: 20,
+        padding: 2,
     },
     partidasOpcoes:{ 
-        backgroundColor: 'blue',
+
     },
     greetings: {
         color: 'white',
@@ -90,5 +127,64 @@ const styles = StyleSheet.create({
     },
     greetingsContainer: {
         paddingRight: 20,
+    },
+    scrollBox: {
+        backgroundColor: '#1D2766',
+        padding: 10,
+        borderRadius: 10,
+        borderWidth: 1,
+        borderColor: '#7380d0',
+        height: 100,
+        alignItems: 'center',
+        gap: 5,
+        width: 100,
+    },
+    scrollBoxText: {
+        color: 'white',
+        fontWeight: 'bold',
+    },
+    modeImages: {
+        width: 48,
+        height: 48,
+    },
+    scrollPartidas: {
+        flexDirection: 'row',
+        gap: 10,
+        alignItems: 'center',
+        
+    },
+    scrollPartida: {
+
+    },
+    scrollPartidaDetalhes: {
+        gap: 8,
+    },
+    titulocanal: {
+        flexDirection: 'row',
+        justifyContent: 'space-between',
+        alignItems: 'center',
+        backgroundColor: '#0e1645',
+        paddingBottom: 5,
+    },
+    titulo: {
+        fontSize: 16,
+        fontWeight: 'bold',
+        color: 'white',
+    },
+    partidas: {
+        backgroundColor: '#0e1645',
+    },
+    counter: {
+        color: 'gray'
+    },
+    person: {
+        flexDirection: 'row',
+        gap: 3,
+    },
+    textWhite: {
+        color: 'white',
+    },
+    textBold: {
+        fontWeight: 'bold',
     }
 })
