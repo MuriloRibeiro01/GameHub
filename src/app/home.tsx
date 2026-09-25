@@ -51,22 +51,105 @@ export default function HomePage() {
                         </View>                        
                         <ScrollView style={styles.partidas}>
                             <View style={styles.scrollPartidas}>
-                                <Image source={require('../../public/GameHubImages/Rectangle.png')}/>
-                                <View style={styles.scrollPartidaDetalhes}>
+                                <Image source={require('../../public/GameHubImages/Rectangle.png')} />
+                                
+                                <View style={styles.scrollPartidaDetalhesEsquerda}>
                                     <Text style={[styles.textWhite, styles.textBold]}>Lendários</Text>
                                     <View style={styles.person}>
-                                        <Image source={require('../../public/GameHubImages/Frame.png')}/>
+                                        <Image source={require('../../public/GameHubImages/Frame.png')} />
                                         <Text style={styles.textWhite}>18/06 às 21:00h</Text>
-                                    </View>                                    
+                                    </View>
                                 </View>
-                                <View style={styles.scrollPartidaDetalhes}>
-                                    <Text style={[styles.textWhite, styles.textBold]}>Ranqueada</Text>
+                                
+                                <View style={styles.scrollPartidaDetalhesDireita}>
+                                    <Text style={styles.textGray}>Ranqueada</Text>
                                     <View style={styles.person}>
-                                        <Image source={require('../../public/GameHubImages/Frame(1).png')}/>
-                                        <Text style={styles.textWhite}>Anfitrião</Text>  
-                                    </View>                                    
-                                </View>                                                         
+                                        <Image source={require('../../public/GameHubImages/Frame(1).png')} />
+                                        <Text style={styles.textRed}>Anfitrião</Text>
+                                    </View>
+                                </View>
                             </View>
+
+                            <View style={styles.scrollPartidas}>
+                                <Image source={require('../../public/GameHubImages/reddead.png')} />
+                                
+                                <View style={styles.scrollPartidaDetalhesEsquerda}>
+                                    <Text style={[styles.textWhite, styles.textBold]}>Yeah, boy</Text>
+                                    <View style={styles.person}>
+                                        <Image source={require('../../public/GameHubImages/Frame.png')} />
+                                        <Text style={styles.textWhite}>23/06 às 19:00h</Text>
+                                    </View>
+                                </View>
+                                
+                                <View style={styles.scrollPartidaDetalhesDireita}>
+                                    <Text style={styles.textGray}>Diversão</Text>
+                                    <View style={styles.person}>
+                                        <Image source={require('../../public/GameHubImages/VectorGreen.png')} />
+                                        <Text style={styles.textGreen}>Anfitrião</Text>
+                                    </View>
+                                </View>
+                            </View>
+
+                            <View style={styles.scrollPartidas}>
+                                <Image source={require('../../public/GameHubImages/cs.png')} />
+                                
+                                <View style={styles.scrollPartidaDetalhesEsquerda}>
+                                    <Text style={[styles.textWhite, styles.textBold]}>Rumo ao topo</Text>
+                                    <View style={styles.person}>
+                                        <Image source={require('../../public/GameHubImages/Frame.png')} />
+                                        <Text style={styles.textWhite}>20/06 às 09:00h</Text>
+                                    </View>
+                                </View>
+                                
+                                <View style={styles.scrollPartidaDetalhesDireita}>
+                                    <Text style={styles.textGray}>1x1</Text>
+                                    <View style={styles.person}>
+                                        <Image source={require('../../public/GameHubImages/Frame(1).png')} />
+                                        <Text style={styles.textRed}>Anfitrião</Text>
+                                    </View>
+                                </View>
+                            </View> 
+
+                            <View style={styles.scrollPartidas}>
+                                <Image source={require('../../public/GameHubImages/apex.png')} />
+                                
+                                <View style={styles.scrollPartidaDetalhesEsquerda}>
+                                    <Text style={[styles.textWhite, styles.textBold]}>Bora queimar tudo</Text>
+                                    <View style={styles.person}>
+                                        <Image source={require('../../public/GameHubImages/Frame.png')} />
+                                        <Text style={styles.textWhite}>20/06 às 14:20h</Text>
+                                    </View>
+                                </View>
+                                
+                                <View style={styles.scrollPartidaDetalhesDireita}>
+                                    <Text style={styles.textGray}>Ranqueada</Text>
+                                    <View style={styles.person}>
+                                        <Image source={require('../../public/GameHubImages/Frame(1).png')} />
+                                        <Text style={styles.textRed}>Anfitrião</Text>
+                                    </View>
+                                </View>
+                            </View>
+                            
+                            <View style={styles.scrollPartidas}>
+                                <Image source={require('../../public/GameHubImages/valorant.png')} />
+                                
+                                <View style={styles.scrollPartidaDetalhesEsquerda}>
+                                    <Text style={[styles.textWhite, styles.textBold]}>Valorosos</Text>
+                                    <View style={styles.person}>
+                                        <Image source={require('../../public/GameHubImages/Frame.png')} />
+                                        <Text style={styles.textWhite}>18/06 às 21:00h</Text>
+                                    </View>
+                                </View>
+                                
+                                <View style={styles.scrollPartidaDetalhesDireita}>
+                                    <Text style={styles.textGray}>Diversão</Text>
+                                    <View style={styles.person}>
+                                        <Image source={require('../../public/GameHubImages/Frame(1).png')} />
+                                        <Text style={styles.textRed}>Anfitrião</Text>
+                                    </View>
+                                </View>
+                            </View>
+
                         </ScrollView>
                     </View>
                 </View>
@@ -102,7 +185,7 @@ const styles = StyleSheet.create({
         padding: 2,
     },
     partidasOpcoes:{ 
-
+        gap: 10
     },
     greetings: {
         color: 'white',
@@ -151,13 +234,21 @@ const styles = StyleSheet.create({
         flexDirection: 'row',
         gap: 10,
         alignItems: 'center',
+        paddingBottom: 10,
         
     },
     scrollPartida: {
 
     },
-    scrollPartidaDetalhes: {
+    scrollPartidaDetalhesEsquerda: {
+        flex: 1,
+        padding: 5,
         gap: 8,
+    },
+    scrollPartidaDetalhesDireita: {
+        padding: 5,
+        gap: 8,
+        alignItems: 'flex-end',
     },
     titulocanal: {
         flexDirection: 'row',
@@ -183,6 +274,15 @@ const styles = StyleSheet.create({
     },
     textWhite: {
         color: 'white',
+    },
+    textRed: {
+        color: 'red',
+    },
+    textGreen: {
+        color: 'green',
+    },
+    textGray: {
+        color: 'gray',
     },
     textBold: {
         fontWeight: 'bold',
