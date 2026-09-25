@@ -230,8 +230,8 @@ const styles = StyleSheet.create({
         fontWeight: 'bold',
     },
     modeImages: {
-        width: 48,
-        height: 48,
+        width: 38,
+        height: 38,
     },
     scrollPartidas: {
         flexDirection: 'row',
