@@ -51,7 +51,7 @@ export default function HomePage() {
                         </View>                        
                         <ScrollView style={styles.partidas}>
                             <View style={styles.scrollPartidas}>
-                                <Image source={require('../../public/GameHubImages/Rectangle.png')} />
+                                <Image style={styles.gameImg} source={require('../../public/GameHubImages/Rectangle.png')} />
                                 
                                 <View style={styles.scrollPartidaDetalhesEsquerda}>
                                     <Text style={[styles.textWhite, styles.textBold]}>Lendários</Text>
@@ -71,7 +71,7 @@ export default function HomePage() {
                             </View>
 
                             <View style={styles.scrollPartidas}>
-                                <Image source={require('../../public/GameHubImages/reddead.png')} />
+                                <Image style={styles.gameImg} source={require('../../public/GameHubImages/reddead.png')} />
                                 
                                 <View style={styles.scrollPartidaDetalhesEsquerda}>
                                     <Text style={[styles.textWhite, styles.textBold]}>Yeah, boy</Text>
@@ -91,7 +91,7 @@ export default function HomePage() {
                             </View>
 
                             <View style={styles.scrollPartidas}>
-                                <Image source={require('../../public/GameHubImages/cs.png')} />
+                                <Image style={styles.gameImg} source={require('../../public/GameHubImages/cs.png')} />
                                 
                                 <View style={styles.scrollPartidaDetalhesEsquerda}>
                                     <Text style={[styles.textWhite, styles.textBold]}>Rumo ao topo</Text>
@@ -111,7 +111,7 @@ export default function HomePage() {
                             </View> 
 
                             <View style={styles.scrollPartidas}>
-                                <Image source={require('../../public/GameHubImages/apex.png')} />
+                                <Image style={styles.gameImg} source={require('../../public/GameHubImages/apex.png')} />
                                 
                                 <View style={styles.scrollPartidaDetalhesEsquerda}>
                                     <Text style={[styles.textWhite, styles.textBold]}>Bora queimar tudo</Text>
@@ -131,7 +131,7 @@ export default function HomePage() {
                             </View>
                             
                             <View style={styles.scrollPartidas}>
-                                <Image source={require('../../public/GameHubImages/valorant.png')} />
+                                <Image style={styles.gameImg} source={require('../../public/GameHubImages/valorant.png')} />
                                 
                                 <View style={styles.scrollPartidaDetalhesEsquerda}>
                                     <Text style={[styles.textWhite, styles.textBold]}>Valorosos</Text>
@@ -160,6 +160,7 @@ export default function HomePage() {
 
 const styles = StyleSheet.create({
     homeContainer: {
+        flex: 1,
         backgroundColor: '#0e1645',
         gap: 50,
     },
@@ -179,12 +180,14 @@ const styles = StyleSheet.create({
         justifyContent: 'space-around',
     },
     partidasAgendadas: {
+        flex: 1,
         backgroundColor: '#0e1645',
         borderColor: 'black',
         margin: 20,
         padding: 2,
     },
     partidasOpcoes:{ 
+        flex: 1,
         gap: 10
     },
     greetings: {
@@ -263,6 +266,7 @@ const styles = StyleSheet.create({
         color: 'white',
     },
     partidas: {
+        flex: 1,
         backgroundColor: '#0e1645',
     },
     counter: {
@@ -286,5 +290,11 @@ const styles = StyleSheet.create({
     },
     textBold: {
         fontWeight: 'bold',
-    }
+    },
+    gameImg: {
+        width: 64,
+        height: 68,
+        borderRadius: 10,
+        resizeMode: 'cover',
+    },
 })
