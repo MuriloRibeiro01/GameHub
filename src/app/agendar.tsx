@@ -1,14 +1,17 @@
-import { View, Text, Button, StyleSheet, TouchableOpacity, Image, Touchable } from "react-native";
+import { View, Text, Button, StyleSheet, TouchableOpacity, Image, Touchable, TextInput } from "react-native";
 import { ThemedView } from "@/components/themed-view";
-import { SafeAreaView } from "react-native-safe-area-context";
+import { SafeAreaView, useSafeAreaInsets } from "react-native-safe-area-context";
 import { useRouter } from "expo-router";
 import CheckBox from 'expo-checkbox';
 import { useState } from "react";
-import ServerModal from "./server-modal";
+import ServerModal from "@/components/server-modal";
+import { Servidor } from "@/constants/servidores";
+
 
 export default function Agendamento() {
 
     const router = useRouter();
+    const insets = useSafeAreaInsets();
 
     function voltar() {
         router.replace('/home');
@@ -19,6 +22,7 @@ export default function Agendamento() {
     const [diversaoChecked, setDiversaoChecked] = useState(false);
     const [categoriaChecked, setCategoriaChecked] = useState(null);
     const [modalAberto, setModalAberto] = useState(false);
+    const [servidor, setServidor] = useState<Servidor | null>(null);
 
     function marcarRanqueada() {
         setRanqueadaChecked(valor => !valor);
@@ -32,8 +36,8 @@ export default function Agendamento() {
 
     return (
         <ThemedView style={styles.root}>
-            <SafeAreaView style={styles.safeContainer}>
-                <View style={styles.titleBtnContainer}>
+            <SafeAreaView edges={['bottom']} style={styles.safeContainer}>
+                <View style={[styles.titleBtnContainer, { paddingTop: insets.top + 15 }]}>
                     <TouchableOpacity onPress={voltar}>
                         <Image source={require('../../public/GameHubImages/FrameSeta.png')}/>
                     </TouchableOpacity>
@@ -64,11 +68,26 @@ export default function Agendamento() {
 
                 <View style={styles.serverContainer}>
                     <TouchableOpacity onPress={() => setModalAberto(true)} style={styles.serverBar}>
-                        <View style={styles.quadrado}></View>
-                        <Text style={[styles.textWhite, styles.textBold, styles.textCenter]}>Selecione um servidor</Text>
+                        {servidor ? (
+                            <Image source={servidor.imagem} style={styles.quadrado} />
+                            ) : (
+                            <View style={styles.quadrado} />
+                            )}
+
+                            <View style={styles.serverBarText}>
+                                <Text style={[styles.textWhite, styles.textBold]}>
+                                    {servidor ? servidor.nome : 'Selecione um servidor'}
+                                </Text>
+                                <Image source={require('../../public/GameHubImages/VectorSeta.png')}/>
+                                {servidor && <Text style={styles.textGray}>{servidor.jogo}</Text>}
+                            </View>
                     </TouchableOpacity> 
 
-                    <ServerModal visible={modalAberto} onClose={() => setModalAberto(false)} />                   
+                    <ServerModal 
+                        visible={modalAberto} 
+                        onClose={() => setModalAberto(false)} 
+                        onSelect={setServidor}    
+                    />                   
                 </View>
 
                 <View style={styles.dateContainer}>
@@ -83,15 +102,15 @@ export default function Agendamento() {
                     <View style={styles.dateContainerPai}>
 
                         <View style={styles.dateContainerEsquerda}>
-                            <View style={styles.dateCampo}></View>
+                            <TextInput style={styles.dateCampo}></TextInput>
                             <Text style={[styles.dateBar, styles.textWhite]}>/</Text>
-                            <View style={styles.dateCampo}></View>
+                            <TextInput style={styles.dateCampo}></TextInput>
                         </View>
                         
                         <View style={styles.dateContainerDireita}>
-                            <View style={styles.dateCampo}></View>
+                            <TextInput style={styles.dateCampo}></TextInput>
                             <Text style={[styles.dateBar, styles.textWhite]}>:</Text>
-                            <View style={styles.dateCampo}></View>
+                            <TextInput style={styles.dateCampo}></TextInput>
                         </View>
                     </View>
                     
@@ -107,13 +126,13 @@ export default function Agendamento() {
                         </Text>
                     </View>
 
-                    <View style={styles.descricaoCampo}>
+                    <TextInput style={styles.descricaoCampo}>
                         
-                    </View>
+                    </TextInput>
                 </View>
 
                 <View style={styles.btnAgendaContainer}>
-                    <TouchableOpacity style={styles.btnAgendamento}>
+                    <TouchableOpacity onPress={voltar} style={styles.btnAgendamento}>
                         <Text style={[styles.agendamentoTxt, styles.textWhite, styles.textBold]}>Agendar</Text>
                     </TouchableOpacity>
                 </View>
@@ -126,9 +145,11 @@ export default function Agendamento() {
 const styles = StyleSheet.create({
     root: {
         flex: 1,
+        backgroundColor: '#0e1645',
     },
     safeContainer: {
-        backgroundColor: '#1a245f',
+        flex: 1,
+        backgroundColor: '#0e1645',
     },
     container: {
         backgroundColor: '#0e1544',
@@ -144,6 +165,7 @@ const styles = StyleSheet.create({
         padding: 15,
         gap: 15,
         flexDirection: 'row',
+        backgroundColor: '#1a245f',
     },
     textWhite: {
         color: 'white',
@@ -194,36 +216,50 @@ const styles = StyleSheet.create({
         alignItems: 'center',
     },
     serverBar: {
-        marginTop: 5,
+        marginTop: 30,
         width: 350,
         height: 70,
         flexDirection: 'row',
         backgroundColor: '#0e1645',
-        justifyContent: 'flex-start',
         alignItems: 'center',
-        borderWidth: 1,
-        borderColor: 'white',
+        borderWidth: 2,
+        borderColor: '#1c225f',
         borderRadius: 10,
+        overflow: 'hidden',
+    },
+    serverBarText: {
+        flex: 1,
+        justifyContent: 'space-around',
+        flexDirection: 'row',
+        alignItems: 'center',
+        paddingHorizontal: 15,
+    },
+    serverBarSeta: {
+        marginRight: 15,
     },
     quadrado: {
-        height: 68,
-        width: 68,
-        borderRadius: 10,
+        alignSelf: 'stretch',
+        aspectRatio: 1,
         backgroundColor: '#1a245f',
     },
     dateContainer: {
         backgroundColor: '#0e1645',
     },
     textDateContainer: {
-        marginTop: 5,
-        justifyContent: 'space-around',
+        alignSelf: 'center',
+        width: 340,
+        marginTop: 30,
+        justifyContent: 'space-between',
         flexDirection: 'row',
         paddingBottom: 5,
     },
     dateCampo: {
-        backgroundColor: 'white',
-        height: 30,
-        width: 30,
+        marginTop: 5,
+        borderRadius: 10,
+        backgroundColor: '#1a245f',
+        height: 50,
+        width: 50,
+        color: 'white',
     },
     dateContainerDireita: {
         flexDirection: 'row',
@@ -236,8 +272,10 @@ const styles = StyleSheet.create({
         alignItems: 'center',
     },
     dateContainerPai: {
+        alignSelf: 'center',
+        width: 350,
         flexDirection: 'row',
-        justifyContent: 'space-around',
+        justifyContent: 'space-between',
     },
     dateBar: {
         fontSize: 20,
@@ -248,13 +286,14 @@ const styles = StyleSheet.create({
     },
     descricaoCabecalho: {
         width: '100%',
-        marginTop: 5,
+        marginTop: 30,
         backgroundColor: '#0e1645',
         flexDirection: 'row',
         justifyContent: 'space-around',
     },
     btnAgendamento: {
-        width: 200,
+        marginTop: 30,
+        width: 350,
         height: 60,
         padding: 10,
         backgroundColor: '#e51c44',
@@ -274,13 +313,14 @@ const styles = StyleSheet.create({
         textAlign: 'center',
     },
     descricaoCampo: {
-        marginTop: 5,
+        marginTop: 10,
         backgroundColor: '#1a245f',
         height: 100,
         width: 350,
         borderRadius: 10,
-        borderWidth: 1,
-        borderColor: 'white',
+        borderWidth: 2,
+        borderColor: '#1c225f',
+        color: 'white',
     },
     textGray: {
         color: 'gray',
