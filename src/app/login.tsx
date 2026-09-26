@@ -42,14 +42,18 @@ const styles = StyleSheet.create({
         width: 395,
     },
     loginBtn: {
+        height: 60,
+        width: 300,
         flexDirection: 'row',
         gap: 10,
         backgroundColor: '#E51C44',
         padding: 15,
         borderRadius: 5,
         marginTop: 100,
+        alignItems: 'center',
     },
     loginText: {
+        marginLeft: 35,
         color: 'white',
         fontWeight: 'bold',
     },
@@ -89,8 +93,9 @@ const styles = StyleSheet.create({
         textAlign: 'center',
     },
     divisor: {
+        marginLeft: 8,
         backgroundColor: '#0e1645',
         width: 1,
-        height: '100%',
+        height: 100,
     },
 })
