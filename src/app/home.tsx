@@ -163,7 +163,7 @@ const styles = StyleSheet.create({
     homeContainer: {
         flex: 1,
         backgroundColor: '#0e1645',
-        gap: 50,
+        gap: 10,
     },
     root: {
         flex: 1,
