@@ -1,4 +1,4 @@
-import { View, Text, Button, StyleSheet, TouchableOpacity, Image, Touchable, TextInput } from "react-native";
+import { View, Text, Button, StyleSheet, TouchableOpacity, Image, Touchable, TextInput, ScrollView } from "react-native";
 import { ThemedView } from "@/components/themed-view";
 import { SafeAreaView, useSafeAreaInsets } from "react-native-safe-area-context";
 import { useRouter } from "expo-router";
@@ -43,22 +43,23 @@ export default function Agendamento() {
                     </TouchableOpacity>
                     <Text style={[styles.textWhite, styles.pageTitle, styles.textBold]}>Agendar partida</Text>
                 </View>
+                <ScrollView style={styles.scroll} keyboardShouldPersistTaps="handled">
                 <View style={styles.categoriaContainer}>
                     <Text style={[styles.textWhite, styles.textBold, styles.pageTitle]}>Categoria</Text>
                     <View>
                         <View style={styles.gameMode}>
                             <TouchableOpacity onPress={marcarRanqueada} style={styles.scrollBox}>
-                                <CheckBox value={ranqueadaChecked} onValueChange={setRanqueadaChecked} style={styles.checkCategoria}></CheckBox>
+                                <CheckBox color={ranqueadaChecked ? 'red' : undefined} value={ranqueadaChecked} onValueChange={setRanqueadaChecked} style={styles.checkCategoria}></CheckBox>
                                 <Image source={require('../../public/GameHubImages/Icon.png')} style={styles.modeImages}/>
                                 <Text style={styles.scrollBoxText}>Ranqueada</Text>
                             </TouchableOpacity>
                             <TouchableOpacity onPress={marcarX1} style={styles.scrollBox}>
-                                <CheckBox value={x1Checked} onValueChange={setX1Checked} style={styles.checkCategoria}></CheckBox>
+                                <CheckBox color={x1Checked ? 'red' : undefined} value={x1Checked} onValueChange={setX1Checked} style={styles.checkCategoria}></CheckBox>
                                 <Image source={require('../../public/GameHubImages/Icon(1).png')} style={styles.modeImages}/>
                                 <Text style={styles.scrollBoxText}>Duelo X1</Text>
                             </TouchableOpacity>
                             <TouchableOpacity onPress={marcarDiversao} style={styles.scrollBox}>
-                                <CheckBox value={diversaoChecked} onValueChange={setDiversaoChecked} style={styles.checkCategoria}></CheckBox>
+                                <CheckBox color={diversaoChecked ? 'red' : undefined} value={diversaoChecked} onValueChange={setDiversaoChecked} style={styles.checkCategoria}></CheckBox>
                                 <Image source={require('../../public/GameHubImages/Group.png')} style={styles.modeImages}/>
                                 <Text style={styles.scrollBoxText}>Diversão</Text>
                             </TouchableOpacity>
@@ -136,7 +137,7 @@ export default function Agendamento() {
                         <Text style={[styles.agendamentoTxt, styles.textWhite, styles.textBold]}>Agendar</Text>
                     </TouchableOpacity>
                 </View>
-                
+                </ScrollView>
             </SafeAreaView>            
         </ThemedView>
     );
@@ -150,6 +151,9 @@ const styles = StyleSheet.create({
     safeContainer: {
         flex: 1,
         backgroundColor: '#0e1645',
+    },
+    scroll: {
+        flex: 1,
     },
     container: {
         backgroundColor: '#0e1544',
