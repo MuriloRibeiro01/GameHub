@@ -94,7 +94,7 @@ const styles = StyleSheet.create({
     },
     divisor: {
         marginLeft: 8,
-        backgroundColor: '#0e1645',
+        backgroundColor: '#0c123b',
         width: 1,
         height: 100,
     },
