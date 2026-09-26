@@ -24,7 +24,7 @@ export default function LoginPage() {
 favoritos com seus amigos</Text>
                 </View>
                 <TouchableOpacity onPress={entrar} style={styles.loginBtn}>
-                    <Image style={styles.discord} source={require('../../public/GameHubImages/Vector.png')}/>
+                    <Image source={require('../../public/GameHubImages/Vector.png')}/>
                     <View style={styles.divisor}></View>
                     <Text style={styles.loginText}>Entrar com Discord</Text>
                 </TouchableOpacity>
@@ -87,9 +87,6 @@ const styles = StyleSheet.create({
     loginSubText: {
         color: 'white',
         textAlign: 'center',
-    },
-    discord: {
-        
     },
     divisor: {
         backgroundColor: '#0e1645',
