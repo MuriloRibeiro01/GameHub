@@ -48,17 +48,17 @@ export default function Agendamento() {
                     <Text style={[styles.textWhite, styles.textBold, styles.pageTitle]}>Categoria</Text>
                     <View>
                         <View style={styles.gameMode}>
-                            <TouchableOpacity onPress={marcarRanqueada} style={styles.scrollBox}>
+                            <TouchableOpacity onPress={marcarRanqueada} style={[styles.scrollBox, ranqueadaChecked && styles.scrollBoxChecked]}>
                                 <CheckBox color={ranqueadaChecked ? 'red' : undefined} value={ranqueadaChecked} onValueChange={setRanqueadaChecked} style={styles.checkCategoria}></CheckBox>
                                 <Image source={require('../../public/GameHubImages/Icon.png')} style={styles.modeImages}/>
                                 <Text style={styles.scrollBoxText}>Ranqueada</Text>
                             </TouchableOpacity>
-                            <TouchableOpacity onPress={marcarX1} style={styles.scrollBox}>
+                            <TouchableOpacity onPress={marcarX1} style={[styles.scrollBox, x1Checked && styles.scrollBoxChecked]}>
                                 <CheckBox color={x1Checked ? 'red' : undefined} value={x1Checked} onValueChange={setX1Checked} style={styles.checkCategoria}></CheckBox>
                                 <Image source={require('../../public/GameHubImages/Icon(1).png')} style={styles.modeImages}/>
                                 <Text style={styles.scrollBoxText}>Duelo X1</Text>
                             </TouchableOpacity>
-                            <TouchableOpacity onPress={marcarDiversao} style={styles.scrollBox}>
+                            <TouchableOpacity onPress={marcarDiversao} style={[styles.scrollBox, diversaoChecked && styles.scrollBoxChecked]}>
                                 <CheckBox color={diversaoChecked ? 'red' : undefined} value={diversaoChecked} onValueChange={setDiversaoChecked} style={styles.checkCategoria}></CheckBox>
                                 <Image source={require('../../public/GameHubImages/Group.png')} style={styles.modeImages}/>
                                 <Text style={styles.scrollBoxText}>Diversão</Text>
@@ -186,15 +186,19 @@ const styles = StyleSheet.create({
         justifyContent: 'space-around',
     },
     scrollBox: {
-        backgroundColor: '#1D2766',
+        backgroundColor: '#0e1645',
         padding: 10,
         borderRadius: 10,
+        borderColor: '#1D2766',
         borderWidth: 1,
-        borderColor: '#7380d0',
         height: 100,
         alignItems: 'center',
         gap: 5,
         width: 100,
+    },
+    scrollBoxChecked: {
+        backgroundColor: '#1D2766',  
+        borderColor: '#7380d0',
     },
     scrollBoxText: {
         color: 'white',
