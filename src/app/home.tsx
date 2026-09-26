@@ -8,9 +8,11 @@ export default function HomePage() {
     const router = useRouter();
 
     function agendar() {
-
         router.replace('/agendar');
+    }
 
+    function detalhes() {
+        router.replace('/detalhes');
     }
     return (
         <ThemedView style={styles.root}>
@@ -50,7 +52,7 @@ export default function HomePage() {
                             <Text style={styles.counter}>Total 6</Text>
                         </View>                        
                         <ScrollView style={styles.partidas}>
-                            <View style={styles.scrollPartidas}>
+                            <TouchableOpacity onPress={detalhes} style={styles.scrollPartidas}>
                                 <Image style={styles.gameImg} source={require('../../public/GameHubImages/Rectangle.png')} />
                                 
                                 <View style={styles.scrollPartidaDetalhesEsquerda}>
@@ -68,7 +70,7 @@ export default function HomePage() {
                                         <Text style={styles.textRed}>Anfitrião</Text>
                                     </View>
                                 </View>
-                            </View>
+                            </TouchableOpacity>
 
                             <View style={styles.scrollPartidas}>
                                 <Image style={styles.gameImg} source={require('../../public/GameHubImages/reddead.png')} />
@@ -149,7 +151,6 @@ export default function HomePage() {
                                     </View>
                                 </View>
                             </View>
-
                         </ScrollView>
                     </View>
                 </View>
